@@ -1,17 +1,13 @@
 package org.example.cookingbrain.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Cliente {
+public class Ingrediente {
 }

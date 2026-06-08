@@ -32,8 +32,11 @@ public class Prato {
 
 
 
-    //inverseJoinColumns: Significa "coluna da relação inversa". Define o nome da coluna que vai armazenar a chave primária da tabela que está do outro lado da lista (no caso, o idPrato).
-    //Se você olhar o seu banco de dados depois que o JPA rodar, a tabela Pedido_Item terá exatamente essas duas colunas estruturadas para fazer a ponte entre as compras e os pratos do cardápio.
+    //inverseJoinColumns: Significa "coluna da relação inversa".
+    // Define o nome da coluna que vai armazenar a chave primária da tabela
+    // que está do outro lado da lista (no caso, o idPrato).
+    //Se você olhar o seu banco de dados depois que o JPA rodar, a tabela Pedido_Item terá
+    // exatamente essas duas colunas estruturadas para fazer a ponte entre as compras e os pratos do cardápio.
 
     @ManyToMany
     @JoinTable(

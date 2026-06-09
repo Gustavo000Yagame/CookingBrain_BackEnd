@@ -3,7 +3,9 @@ package org.example.cookingbrain.service;
 
 import org.example.cookingbrain.dto.ClienteRequestDTO;
 import org.example.cookingbrain.dto.ClienteResponseDTO;
+import org.example.cookingbrain.dto.PedidoResponseDTO;
 import org.example.cookingbrain.model.Cliente;
+import org.example.cookingbrain.model.Pedido;
 import org.example.cookingbrain.repository.ClienteRepository;
 import org.example.cookingbrain.repository.PedidoRepository;
 import org.springframework.stereotype.Service;
@@ -65,21 +67,33 @@ public class ClienteService {
     }
 
     private Cliente toEntity(ClienteRequestDTO dto){
-        //Pedido pedido = pedidoService.buscarEntidade(dto.idpedido());
         Cliente cliente = new Cliente();
         cliente.setNome(dto.nome());
         cliente.setEmail(dto.email());
-        //cliente.setPedidos();
         return cliente;
-
-        //não precisa de Pedido aqui deixei pra tu ver
     }
 
     private ClienteResponseDTO toResponseDTO(Cliente cliente){
+        List<PedidoResponseDTO> pedidos = pedidoRepository.findByClienteIdCliente(cliente.getIdCliente())
+                .stream()
+                .map(this::toPedidoResponseDTO)
+                .toList();
+
         return  new ClienteResponseDTO(
                 cliente.getIdCliente(),
                 cliente.getNome(),
-                cliente.getEmail()
+                cliente.getEmail(),
+                pedidos
+        );
+    }
+
+    private PedidoResponseDTO toPedidoResponseDTO(Pedido pedido){
+        return new PedidoResponseDTO(
+                pedido.getIdPedido(),
+                pedido.getStatus(),
+                pedido.getFormaPag(),
+                pedido.getPedidocol(),
+                pedido.getCliente().getIdCliente()
         );
     }
 }

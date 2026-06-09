@@ -8,5 +8,5 @@ public record RestauranteResponseDTO(
         String descricao,
         String horarioAtendimento,
         String numero,
-        String cnpj,
+        String cnpj
 ) {}

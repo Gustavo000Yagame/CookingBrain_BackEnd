@@ -1,0 +1,90 @@
+[33mcommit 2cbcb4c3c72d637e037f47d7b3c77ae895620d95[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: joazis-quebra-codegos <joao.ds.zantti@gmail.com>
+Date:   Tue Jun 9 19:41:23 2026 -0300
+
+    Lista de pedidos de cada cliente feita
+
+[33mcommit d7be3f27f7ba7aa214597e9b6a7cd41e515c1715[m
+Author: 📂 Gustavo Cardoso Guaresi <geraisusos25@gmail.com>
+Date:   Mon Jun 8 22:50:10 2026 -0300
+
+    Update application.properties
+
+[33mcommit 6394807183d42bea1c57de47c21c318e48016adb[m
+Author: gianluca rosso silveira <gianluca_silveira@estudante.sesisenai.org.br>
+Date:   Mon Jun 8 22:26:34 2026 -0300
+
+    Controller e service Cliente
+
+[33mcommit 26d81a012bc28e47a12246154e39e74393505beb[m
+Author: gianluca rosso silveira <gianluca_silveira@estudante.sesisenai.org.br>
+Date:   Mon Jun 8 21:28:20 2026 -0300
+
+    Requests concertado
+
+[33mcommit 290ba32189089d82c8f6f49f52048dcff7f81951[m
+Author: gianluca rosso silveira <gianluca_silveira@estudante.sesisenai.org.br>
+Date:   Mon Jun 8 20:04:39 2026 -0300
+
+    Todos os Responses feitos, falta configuraçcoes
+
+[33mcommit 74f05017e1d7bfedda2e39a773a842cbaa3a4e70[m
+Author: Gianluca <rossogian62@gmail.com>
+Date:   Thu Jun 4 09:45:13 2026 -0300
+
+    Conclusao dos model relacionamentos e request
+
+[33mcommit b5369cd62e6130b6a501b667b3c6a540083c06a3[m
+Author: João Henrique <joao.ds.zantti@gmail.com>
+Date:   Wed Jun 3 21:33:11 2026 -0300
+
+    Mudança no model
+
+[33mcommit edcaf1232759b140390e6eed7bf3c23e73c6129c[m
+Author: VITOR DE FARIAS DE PIERI <vitor_pieri@estudante.sesisenai.org.br>
+Date:   Wed Jun 3 21:21:01 2026 -0300
+
+    controller
+
+[33mcommit 93dd2a9fa2d3c145bbe509fcb85c2a7ba832be9e[m
+Merge: 8c96e6b 612106d
+Author: João Henrique <joao.ds.zantti@gmail.com>
+Date:   Wed Jun 3 21:14:18 2026 -0300
+
+    Merge branch 'main' of https://github.com/Gustavo000Yagame/CookingBrain_BackEnd
+
+[33mcommit 8c96e6ba8b8a9f59d36d469d9cc9606f6b8e97b4[m
+Author: João Henrique <joao.ds.zantti@gmail.com>
+Date:   Wed Jun 3 21:14:08 2026 -0300
+
+    Tres entidades principais
+
+[33mcommit 612106d034e5d741b2541b1b0e6ee63f001ef877[m
+Author: VITOR DE FARIAS DE PIERI <vitor_pieri@estudante.sesisenai.org.br>
+Date:   Wed Jun 3 21:07:32 2026 -0300
+
+    message
+
+[33mcommit 840bc3d0816ebf4545e9ae140af9e8efd3c24ed1[m
+Author: JOÃO HENRIQUE DE SOUZA ZAMPARETTI <joao_zamparetti@estudante.sesisenai.org.br>
+Date:   Wed Jun 3 20:11:31 2026 -0300
+
+    Classe do dto para tipo record
+
+[33mcommit d4e1b054d8dfea2d25932100ff1c478f0eb328bb[m
+Author: GUSTAVO CARDOSO GUARESI <gustavo_guaresi@estudante.sesisenai.org.br>
+Date:   Wed Jun 3 20:08:22 2026 -0300
+
+    oi
+
+[33mcommit abfeef04f128edcc12eb2a0ae1276162933eeca7[m
+Author: 📂 Gustavo Cardoso Guaresi <geraisusos25@gmail.com>
+Date:   Wed Jun 3 19:56:45 2026 -0300
+
+    Create README.md
+
+[33mcommit 58e6c2ba6af3549cc94da1f69e9806c9a4994c33[m
+Author: GUSTAVO CARDOSO GUARESI <gustavo_guaresi@estudante.sesisenai.org.br>
+Date:   Wed Jun 3 19:53:57 2026 -0300
+
+    Criação da estrutura inicial de pastas

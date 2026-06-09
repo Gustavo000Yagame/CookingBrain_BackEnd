@@ -1,5 +1,6 @@
 package org.example.cookingbrain.service;
 
+import org.example.cookingbrain.dto.PratoResponseDTO;
 import org.example.cookingbrain.dto.RestauranteRequestDTO;
 import org.example.cookingbrain.dto.RestauranteResponseDTO;
 import org.example.cookingbrain.model.Restaurante;
@@ -30,6 +31,35 @@ public class RestauranteService {
         Restaurante restaurante = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Restaurante não encontrado"));
         return toResponse(restaurante);
+    }
+
+    public RestauranteResponseDTO salvar(RestauranteRequestDTO dto){
+        Restaurante restaurante = toEntity(dto);
+
+        Restaurante salvo = repository.save(restaurante);
+        return toResponse(salvo);
+    }
+
+    public RestauranteResponseDTO atualizar(RestauranteRequestDTO dto, Integer id){
+        Restaurante restaurante = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Restaurante não encontrado"));
+
+        restaurante.setNome(dto.nome());
+        restaurante.setFoto(dto.foto());
+        restaurante.setLocal(dto.local());
+        restaurante.setDescricao(dto.descricao());
+        restaurante.setHorarioAtendimento(dto.horarioAtendimento());
+        restaurante.setNumero(dto.numero());
+        restaurante.setCnpj(dto.cnpj());
+
+        Restaurante atualizado = repository.save(restaurante);
+        return toResponse(atualizado);
+    }
+
+    public void deletar(Integer id){
+        repository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Restaurante não encontrado"));
+        repository.deleteById(id);
     }
 
     private RestauranteResponseDTO toResponse(Restaurante restaurante){

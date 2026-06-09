@@ -87,6 +87,7 @@ public class ClienteService {
         );
     }
 
+    //Transformar pedido em response *NÃO CHAMAR O PedidoService NESSA CLASSE*
     private PedidoResponseDTO toPedidoResponseDTO(Pedido pedido){
         return new PedidoResponseDTO(
                 pedido.getIdPedido(),

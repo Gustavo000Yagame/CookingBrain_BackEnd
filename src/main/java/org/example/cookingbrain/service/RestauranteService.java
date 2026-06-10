@@ -27,7 +27,7 @@ public class RestauranteService {
                 .toList();
     }
 
-    public RestauranteResponseDTO findById(Integer id){
+    public RestauranteResponseDTO buscarPorId(Integer id){
         Restaurante restaurante = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Restaurante não encontrado"));
         return toResponse(restaurante);

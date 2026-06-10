@@ -4,6 +4,7 @@ package org.example.cookingbrain.service;
 import org.example.cookingbrain.dto.ClienteRequestDTO;
 import org.example.cookingbrain.dto.ClienteResponseDTO;
 import org.example.cookingbrain.dto.PedidoResponseDTO;
+import org.example.cookingbrain.exception.RecursoNaoEncontradoException;
 import org.example.cookingbrain.model.Cliente;
 import org.example.cookingbrain.model.Pedido;
 import org.example.cookingbrain.repository.ClienteRepository;
@@ -56,6 +57,8 @@ public class ClienteService {
     }
 
     public void deletar(Integer idCliente){
+        Cliente cliente = repository.findById(idCliente)
+                        .orElseThrow(()-> new RecursoNaoEncontradoException("Cliente não encontrado"));
         repository.deleteById(idCliente);
     }
 

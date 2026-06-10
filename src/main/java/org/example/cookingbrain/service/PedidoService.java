@@ -47,7 +47,7 @@ public class PedidoService {
         pedido.setIdPedido(dto.clienteId());
 
         Pedido salvo = repository.save(pedido);
-        return toResponse(pedido);
+        return toResponse(salvo);
     }
 
     public void deletar(Integer id){
@@ -71,7 +71,6 @@ public class PedidoService {
         pedido.setStatus(dto.status());
         pedido.setFormaPag(dto.formaPag());
         pedido.setPedidocol(dto.pedidocol());
-        pedido.setIdPedido(dto.clienteId());
 
         return pedido;
     }

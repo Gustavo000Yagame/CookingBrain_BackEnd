@@ -1,8 +1,10 @@
 package org.example.cookingbrain.dto;
 
+import org.example.cookingbrain.model.Prato;
+
 public record AvaliacaoResponseDTO(
         Integer idAvaliacao,
         Integer nota,
         String comentario,
-        Integer idPrato //ManyToOne
+        Prato prato //ManyToOne
 ) {}

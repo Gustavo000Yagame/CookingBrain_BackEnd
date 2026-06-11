@@ -3,14 +3,13 @@ package org.example.cookingbrain.service;
 import org.example.cookingbrain.dto.ProdutoEstoqueRequestDTO;
 import org.example.cookingbrain.dto.ProdutoEstoqueResponseDTO;
 import org.example.cookingbrain.exception.RecursoNaoEncontradoException;
-import org.example.cookingbrain.model.ProdutoEstoque;
 import org.example.cookingbrain.repository.ProdutoEstoqueRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ProdutoEstoque {
+public class ProdutoEstoqueService {
 
     private final ProdutoEstoqueRepository produtoEstoqueRepository;
 
@@ -26,7 +25,7 @@ public class ProdutoEstoque {
     }
 
     public ProdutoEstoqueResponseDTO buscarPorId(Integer idProdutoEstoque) {
-        ProdutoEstoque produtoEstoque = produtoEstoqueRepository.findById(idProdutoEstoque)
+        ProdutoEstoqueService produtoEstoque = produtoEstoqueRepository.findById(idProdutoEstoque)
                 .orElseThrow(() ->
                         new RecursoNaoEncontradoException("Produto no estoque não encontrado"));
 
@@ -34,9 +33,9 @@ public class ProdutoEstoque {
     }
 
     public ProdutoEstoqueResponseDTO salvar(ProdutoEstoqueRequestDTO dto) {
-        ProdutoEstoque produtoEstoque = toEntity(dto);
+        ProdutoEstoqueService produtoEstoque = toEntity(dto);
 
-        ProdutoEstoque salvo = produtoEstoqueRepository.save(produtoEstoque);
+        ProdutoEstoqueService salvo = produtoEstoqueRepository.save(produtoEstoque);
 
         return toResponseDTO(salvo);
     }
@@ -44,28 +43,28 @@ public class ProdutoEstoque {
     public ProdutoEstoqueResponseDTO atualizar(Integer idProdutoEstoque,
                                                ProdutoEstoqueRequestDTO dto) {
 
-        ProdutoEstoque produtoEstoque = produtoEstoqueRepository.findById(idProdutoEstoque)
+        ProdutoEstoqueService produtoEstoque = produtoEstoqueRepository.findById(idProdutoEstoque)
                 .orElseThrow(() ->
                         new RecursoNaoEncontradoException("Produto no estoque não encontrado"));
 
         produtoEstoque.setNome(dto.nome());
         produtoEstoque.setQuantidade(dto.quantidade());
 
-        ProdutoEstoque atualizado = produtoEstoqueRepository.save(produtoEstoque);
+        ProdutoEstoqueService atualizado = produtoEstoqueRepository.save(produtoEstoque);
 
         return toResponseDTO(atualizado);
     }
 
     public void deletar(Integer idProdutoEstoque) {
-        ProdutoEstoque produtoEstoque = produtoEstoqueRepository.findById(idProdutoEstoque)
+        ProdutoEstoqueService produtoEstoque = produtoEstoqueRepository.findById(idProdutoEstoque)
                 .orElseThrow(() ->
                         new RecursoNaoEncontradoException("Produto no estoque não encontrado"));
 
         produtoEstoqueRepository.delete(produtoEstoque);
     }
 
-    private ProdutoEstoque toEntity(ProdutoEstoqueRequestDTO dto) {
-        ProdutoEstoque produtoEstoque = new ProdutoEstoque();
+    private ProdutoEstoqueService toEntity(ProdutoEstoqueRequestDTO dto) {
+        ProdutoEstoqueService produtoEstoque = new ProdutoEstoqueService();
 
         produtoEstoque.setNome(dto.nome());
         produtoEstoque.setQuantidade(dto.quantidade());
@@ -73,7 +72,7 @@ public class ProdutoEstoque {
         return produtoEstoque;
     }
 
-    private ProdutoEstoqueResponseDTO toResponseDTO(ProdutoEstoque produtoEstoque) {
+    private ProdutoEstoqueResponseDTO toResponseDTO(ProdutoEstoqueService produtoEstoque) {
         return new ProdutoEstoqueResponseDTO(
                 produtoEstoque.getIdProdutoEstoque(),
                 produtoEstoque.getQuantidade(),

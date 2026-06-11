@@ -43,7 +43,6 @@ public class PedidoService {
 
         pedido.setStatus(dto.status());
         pedido.setFormaPag(dto.formaPag());
-        pedido.setPedidocol(dto.pedidocol());
         pedido.setIdPedido(dto.clienteId());
 
         Pedido salvo = repository.save(pedido);
@@ -60,8 +59,8 @@ public class PedidoService {
                 pedido.getIdPedido(),
                 pedido.getStatus(),
                 pedido.getFormaPag(),
-                pedido.getPedidocol(),
-                pedido.getCliente().getIdCliente()
+                pedido.getCliente().getIdCliente(),
+                pedido.getCliente().getNome()
         );
     }
 
@@ -70,7 +69,7 @@ public class PedidoService {
 
         pedido.setStatus(dto.status());
         pedido.setFormaPag(dto.formaPag());
-        pedido.setPedidocol(dto.pedidocol());
+
 
         return pedido;
     }

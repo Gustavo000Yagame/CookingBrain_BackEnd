@@ -96,8 +96,8 @@ public class ClienteService {
                 pedido.getIdPedido(),
                 pedido.getStatus(),
                 pedido.getFormaPag(),
-                pedido.getPedidocol(),
-                pedido.getCliente().getIdCliente()
+                pedido.getCliente().getIdCliente(),
+                pedido.getCliente().getNome()
         );
     }
 }

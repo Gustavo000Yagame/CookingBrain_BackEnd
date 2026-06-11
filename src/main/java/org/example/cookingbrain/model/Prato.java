@@ -30,6 +30,8 @@ public class Prato {
     @OneToMany(mappedBy = "prato")
     private List<Avaliacao> avaliacoes;
 
+    @ManyToMany(mappedBy = "pratos")
+    private List<Pedido> pedidos;
 
 
     //inverseJoinColumns: Significa "coluna da relação inversa".

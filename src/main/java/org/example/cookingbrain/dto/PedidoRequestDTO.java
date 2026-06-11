@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.example.cookingbrain.model.Prato;
 
 
 public record PedidoRequestDTO(
@@ -17,14 +18,13 @@ public record PedidoRequestDTO(
         @Size(max = 100, message = "A forma de pagamento não pode passar de 100 caracteres.")
         String formaPag,
 
-        @Size(max = 45, message = "O protocolo do pedido não pode passar de 45 caracteres.")
-        String pedidocol,
+
 
         @NotNull(message = "O ID do cliente é obrigatório.")
         Integer clienteId,
 
         @NotEmpty(message = "O pedido precisa ter pelo menos um prato selecionado.")
-        List<Integer> pratosIds
+        List<Prato> pratos
 ) {}
 
 

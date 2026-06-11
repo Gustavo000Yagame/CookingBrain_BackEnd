@@ -41,7 +41,7 @@ public class PedidoService {
         Pedido pedido = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
 
-        pedido.setStatus(dto.status());
+        pedido.setStatus(dto.status()); 
         pedido.setFormaPag(dto.formaPag());
         pedido.setPedidocol(dto.pedidocol());
         pedido.setIdPedido(dto.clienteId());

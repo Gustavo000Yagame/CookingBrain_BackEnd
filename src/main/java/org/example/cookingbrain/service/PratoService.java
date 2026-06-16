@@ -1,5 +1,6 @@
 package org.example.cookingbrain.service;
 
+import lombok.AllArgsConstructor;
 import org.example.cookingbrain.dto.PratoRequestDTO;
 import org.example.cookingbrain.dto.PratoResponseDTO;
 import org.example.cookingbrain.exception.RecursoNaoEncontradoException;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+
 public class PratoService {
 
     private final PratoRepository pratoRepository;

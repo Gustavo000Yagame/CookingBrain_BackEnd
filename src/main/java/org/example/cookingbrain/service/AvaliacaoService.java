@@ -2,10 +2,8 @@ package org.example.cookingbrain.service;
 
 import org.example.cookingbrain.dto.AvaliacaoRequestDTO;
 import org.example.cookingbrain.dto.AvaliacaoResponseDTO;
-import org.example.cookingbrain.dto.PratoResponseDTO;
 import org.example.cookingbrain.exception.RecursoNaoEncontradoException;
 import org.example.cookingbrain.model.Avaliacao;
-import org.example.cookingbrain.model.Pedido;
 import org.example.cookingbrain.model.Prato;
 import org.example.cookingbrain.repository.AvaliacaoRepository;
 import org.example.cookingbrain.repository.PratoRepository;
@@ -82,26 +80,12 @@ public class AvaliacaoService {
                 avaliacao.getIdAvaliacao(),
                 avaliacao.getNota(),
                 avaliacao.getComentario(),
-
-                new PratoResponseDTO(
+                new AvaliacaoResponseDTO.PratoResumido(
                         avaliacao.getPrato().getIdPrato(),
                         avaliacao.getPrato().getNome(),
                         avaliacao.getPrato().getDescricao(),
                         avaliacao.getPrato().getPreco(),
-                        avaliacao.getPrato().getRestaurante().getIdRestaurante(),
-
-                        avaliacao.getPrato().getPedidos().stream()
-                                .map(pedido -> new PratoResponseDTO.PedidoResumidoDTO(
-                                        pedido.getIdPedido(),
-                                        pedido.getStatus(),
-                                        pedido.getFormaPag()
-                                )).toList(),
-
-                        avaliacao.getPrato().getIngredientes().stream() // corrigido aqui
-                                .map(produto -> new PratoResponseDTO.ProdutoEstoqueResumidoDTO(
-                                        produto.getIdProdutoEstoque(),
-                                        produto.getNome()
-                                )).toList()
+                        avaliacao.getPrato().getRestaurante().getIdRestaurante()
                 )
         );
     }

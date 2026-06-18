@@ -3,6 +3,8 @@ package org.example.cookingbrain.handler;
 import org.example.cookingbrain.exception.RecursoDuplicadoException;
 import org.example.cookingbrain.exception.RecursoNaoEncontradoException;
 import org.example.cookingbrain.exception.RegraNegocioException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -14,6 +16,9 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger logger =
+            LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> tratarValidacao(
@@ -68,8 +73,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> tratarErroGenerico(
             Exception ex) {
 
+        logger.error("Erro interno:", ex);
+
         Map<String, String> erro = new HashMap<>();
-        erro.put("erro", "Erro interno do servidor");
+        erro.put("erro", ex.getClass().getName());
+        erro.put("mensagem", ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(erro);

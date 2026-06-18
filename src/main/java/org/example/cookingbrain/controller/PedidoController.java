@@ -19,31 +19,32 @@ public class PedidoController {
 
     private final PedidoService service;
 
-    @Operation(summary = "Listar todas as avaliações")
+    @Operation(summary = "Listar todos os pedidos")
     @GetMapping
     public List<PedidoResponseDTO> listar(){
         return service.listar();
     }
 
-    @Operation(summary = "Busca uma avaliação por id")
+    @Operation(summary = "Busca um pedido por id")
     @GetMapping("/{idPedido}")
     public PedidoResponseDTO buscarPorId(@PathVariable Integer idPedido){
         return service.buscarPorId(idPedido);
     }
 
-    @Operation(summary = "Cadastra uma nova avaliação")
+    @Operation(summary = "Cadastra um novo pedido")
     @PostMapping
     public PedidoResponseDTO salvar(@RequestBody @Valid PedidoRequestDTO dto){
         return service.salvar(dto);
     }
 
-    @Operation(summary = "Atualiza uma avaliação")
-    @PutMapping ("/{idPedido}")
-    public PedidoResponseDTO atualizar(@RequestBody @Valid PedidoRequestDTO dto,@PathVariable Integer idPedido){
+    @Operation(summary = "Atualiza um pedido")
+    @PutMapping("/{idPedido}")
+    public PedidoResponseDTO atualizar(@RequestBody @Valid PedidoRequestDTO dto,
+                                       @PathVariable Integer idPedido){
         return service.atualizar(dto, idPedido);
     }
 
-    @Operation(summary = "Deleta uma avaliação")
+    @Operation(summary = "Deleta um pedido")
     @DeleteMapping("/{idPedido}")
     public void deletar(@PathVariable Integer idPedido){
         service.deletar(idPedido);

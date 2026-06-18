@@ -1,6 +1,5 @@
 package org.example.cookingbrain.service;
 
-
 import org.example.cookingbrain.dto.ClienteRequestDTO;
 import org.example.cookingbrain.dto.ClienteResponseDTO;
 import org.example.cookingbrain.dto.PedidoResponseDTO;
@@ -15,8 +14,8 @@ import java.util.List;
 
 @Service
 public class ClienteService {
-    private final ClienteRepository repository;
 
+    private final ClienteRepository repository;
     private final PedidoRepository pedidoRepository;
 
     public ClienteService(ClienteRepository repository, PedidoRepository pedidoRepository) {
@@ -39,30 +38,28 @@ public class ClienteService {
 
     public ClienteResponseDTO buscarPorId(Integer id){
         Cliente cliente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Cliente não encontrado"));
         return toResponseDTO(cliente);
     }
 
     public ClienteResponseDTO atualizar(Integer idCliente, ClienteRequestDTO dto){
         Cliente cliente = repository.findById(idCliente)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Cliente não encontrado"));
 
         cliente.setNome(dto.nome());
         cliente.setEmail(dto.email());
 
         Cliente atualizado = repository.save(cliente);
-
         return toResponseDTO(atualizado);
     }
 
     public void deletar(Integer idCliente){
         Cliente cliente = repository.findById(idCliente)
-                        .orElseThrow(()-> new RecursoNaoEncontradoException("Cliente não encontrado"));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Cliente não encontrado"));
         repository.deleteById(idCliente);
     }
 
-    public List<ClienteResponseDTO> BuscarPorNome (String nome){
+    public List<ClienteResponseDTO> BuscarPorNome(String nome){
         return repository.findByNomeContainingIgnoreCase(nome)
                 .stream()
                 .map(this::toResponseDTO)
@@ -82,7 +79,7 @@ public class ClienteService {
                 .map(this::toPedidoResponseDTO)
                 .toList();
 
-        return  new ClienteResponseDTO(
+        return new ClienteResponseDTO(
                 cliente.getIdCliente(),
                 cliente.getNome(),
                 cliente.getEmail(),
@@ -90,7 +87,6 @@ public class ClienteService {
         );
     }
 
-    //Transformar pedido em response *NÃO CHAMAR O PedidoService NESSA CLASSE*
     private PedidoResponseDTO toPedidoResponseDTO(Pedido pedido){
         return new PedidoResponseDTO(
                 pedido.getIdPedido(),

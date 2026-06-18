@@ -17,13 +17,11 @@ public class Pedido {
 
     private String status;
     private String formaPag;
-    private String pedidocol;
 
     @ManyToOne
     @JoinColumn(name = "Cliente_idCliente")
     private Cliente cliente;
 
-    // Relacionamento Muitos para Muitos com Prato (Gera a tabela Pedido_Item)
     @ManyToMany
     @JoinTable(
             name = "Pedido_Item",

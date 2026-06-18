@@ -7,54 +7,49 @@ import lombok.RequiredArgsConstructor;
 import org.example.cookingbrain.dto.ProdutoEstoqueRequestDTO;
 import org.example.cookingbrain.dto.ProdutoEstoqueResponseDTO;
 import org.example.cookingbrain.service.ProdutoEstoqueService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "Produtos em Estoque", description = "Rotas para gerenciamento dos produtos em estoque")
+@Tag(name = "Produtos em Estoque", description = "Rotas para gerenciamento do estoque")
 @RestController
-@RequestMapping("/produtos-estoque")
+@RequestMapping("/estoque")
 @RequiredArgsConstructor
 public class ProdutoEstoqueController {
 
-    private final ProdutoEstoqueService produtoEstoqueService;
+    private final ProdutoEstoqueService service;
 
-    @Operation(summary = "Listar todos os produtos do estoque")
+    @Operation(summary = "Lista todos os produtos em estoque")
     @GetMapping
-    public List<ProdutoEstoqueResponseDTO> listar() {
-        return produtoEstoqueService.listarTodos();
+    public List<ProdutoEstoqueResponseDTO> listarTodos() {
+        return service.listarTodos();
     }
 
-    @Operation(summary = "Buscar produto do estoque por ID")
-    @GetMapping("/{idProdutoEstoque}")
-    public ProdutoEstoqueResponseDTO buscarPorId(
-            @PathVariable Integer idProdutoEstoque) {
-
-        return produtoEstoqueService.buscarPorId(idProdutoEstoque);
+    @Operation(summary = "Busca um produto em estoque por id")
+    @GetMapping("/{idProduto}")
+    public ProdutoEstoqueResponseDTO buscarPorId(@PathVariable Integer idProduto) {
+        return service.buscarPorId(idProduto);
     }
 
-    @Operation(summary = "Cadastrar produto no estoque")
+    @Operation(summary = "Cadastra um produto em estoque")
     @PostMapping
-    public ProdutoEstoqueResponseDTO salvar(
-            @RequestBody @Valid ProdutoEstoqueRequestDTO dto) {
-
-        return produtoEstoqueService.salvar(dto);
+    public ResponseEntity<ProdutoEstoqueResponseDTO> salvar(@RequestBody @Valid ProdutoEstoqueRequestDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.salvar(dto));
     }
 
-    @Operation(summary = "Atualizar produto do estoque")
-    @PutMapping("/{idProdutoEstoque}")
-    public ProdutoEstoqueResponseDTO atualizar(
-            @PathVariable Integer idProdutoEstoque,
-            @RequestBody @Valid ProdutoEstoqueRequestDTO dto) {
-
-        return produtoEstoqueService.atualizar(idProdutoEstoque, dto);
+    @Operation(summary = "Atualiza um produto em estoque")
+    @PutMapping("/{idProduto}")
+    public ProdutoEstoqueResponseDTO atualizar(@PathVariable Integer idProduto,
+                                               @RequestBody @Valid ProdutoEstoqueRequestDTO dto) {
+        return service.atualizar(idProduto, dto);
     }
 
-    @Operation(summary = "Remover produto do estoque")
-    @DeleteMapping("/{idProdutoEstoque}")
-    public void deletar(
-            @PathVariable Integer idProdutoEstoque) {
-
-        produtoEstoqueService.deletar(idProdutoEstoque);
+    @Operation(summary = "Deleta um produto em estoque")
+    @DeleteMapping("/{idProduto}")
+    public ResponseEntity<Void> deletar(@PathVariable Integer idProduto) {
+        service.deletar(idProduto);
+        return ResponseEntity.noContent().build();
     }
 }

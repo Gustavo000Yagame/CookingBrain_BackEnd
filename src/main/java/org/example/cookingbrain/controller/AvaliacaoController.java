@@ -25,17 +25,25 @@ public class AvaliacaoController {
 
     @Operation(summary = "Busca uma avaliação por id")
     @GetMapping("/{idAvaliacao}")
-    public AvaliacaoResponseDTO buscarPorId(@PathVariable Integer idAvaliacao) {return avaliacaoService.buscarPorId(idAvaliacao);}
+    public AvaliacaoResponseDTO buscarPorId(@PathVariable Integer idAvaliacao) {
+        return avaliacaoService.buscarPorId(idAvaliacao);
+    }
 
     @Operation(summary = "Cadastra uma nova avaliação")
     @PostMapping
-    public AvaliacaoResponseDTO cadastrar(@RequestBody @Valid AvaliacaoRequestDTO dto) {return avaliacaoService.salvar(dto); }
+    public AvaliacaoResponseDTO cadastrar(@RequestBody @Valid AvaliacaoRequestDTO dto) {
+        return avaliacaoService.salvar(dto);
+    }
 
     @Operation(summary = "Atualiza uma avaliação")
-    @PutMapping
-    public AvaliacaoResponseDTO atualizar (@PathVariable Integer idAvaliacao, @RequestBody @Valid AvaliacaoRequestDTO dto) { return avaliacaoService.atualizar(idAvaliacao, dto); }
+    @PutMapping("/{idAvaliacao}")
+    public AvaliacaoResponseDTO atualizar(@PathVariable Integer idAvaliacao, @RequestBody @Valid AvaliacaoRequestDTO dto) {
+        return avaliacaoService.atualizar(idAvaliacao, dto);
+    }
 
     @Operation(summary = "Deleta uma avaliação")
-    @DeleteMapping
-    public void deletar (@PathVariable Integer idAvaliacao){avaliacaoService.deletar(idAvaliacao);}
+    @DeleteMapping("/{idAvaliacao}")
+    public void deletar(@PathVariable Integer idAvaliacao) {
+        avaliacaoService.deletar(idAvaliacao);
+    }
 }

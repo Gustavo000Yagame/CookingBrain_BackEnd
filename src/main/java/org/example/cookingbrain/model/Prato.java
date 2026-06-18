@@ -1,5 +1,7 @@
 package org.example.cookingbrain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.*;
@@ -26,6 +28,7 @@ public class Prato {
     @ManyToOne
     @JoinColumn(name = "Restaurante_idRestaurante")
     private Restaurante restaurante;
+
 
     @OneToMany(mappedBy = "prato")
     private List<Avaliacao> avaliacoes;

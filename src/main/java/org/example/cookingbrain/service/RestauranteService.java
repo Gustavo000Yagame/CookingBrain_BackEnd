@@ -59,6 +59,15 @@ public class RestauranteService {
         repository.deleteById(id);
     }
 
+    public List<RestauranteResponseDTO> listarRestaurantesNome(String nome){
+        return repository.findByNomeContainingIgnoreCase(nome)
+                .stream()
+                .map(this::toResponse)
+                .toList();
+    }
+
+
+
     private RestauranteResponseDTO toResponse(Restaurante restaurante){
         return new RestauranteResponseDTO(
                 restaurante.getIdRestaurante(),

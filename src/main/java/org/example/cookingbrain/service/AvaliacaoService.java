@@ -2,6 +2,7 @@ package org.example.cookingbrain.service;
 
 import org.example.cookingbrain.dto.AvaliacaoRequestDTO;
 import org.example.cookingbrain.dto.AvaliacaoResponseDTO;
+import org.example.cookingbrain.dto.RestauranteResponseDTO;
 import org.example.cookingbrain.exception.RecursoNaoEncontradoException;
 import org.example.cookingbrain.model.Avaliacao;
 import org.example.cookingbrain.model.Prato;
@@ -62,6 +63,13 @@ public class AvaliacaoService {
         Avaliacao avaliacao = avaliacaoRepository.findById(idAvaliacao)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Avaliacao não encontrada"));
         avaliacaoRepository.deleteById(idAvaliacao);
+    }
+
+    public List<AvaliacaoResponseDTO> listarAvaliacaoDecrecente(Integer nota){
+        return avaliacaoRepository.findByNotaOrderByNotaDesc(nota)
+                .stream()
+                .map(this::toResponseDTO)
+                .toList();
     }
 
     private Avaliacao toEntity(AvaliacaoRequestDTO dto) {

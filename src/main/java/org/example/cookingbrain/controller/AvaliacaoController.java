@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.cookingbrain.dto.AvaliacaoRequestDTO;
 import org.example.cookingbrain.dto.AvaliacaoResponseDTO;
+import org.example.cookingbrain.dto.RestauranteResponseDTO;
 import org.example.cookingbrain.service.AvaliacaoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +46,11 @@ public class AvaliacaoController {
     @DeleteMapping("/{idAvaliacao}")
     public void deletar(@PathVariable Integer idAvaliacao) {
         avaliacaoService.deletar(idAvaliacao);
+    }
+
+    @Operation(summary = "Busca Avaliaçao por ordem decrecente")
+    @GetMapping("/buscar/avaliacao")
+    public List<AvaliacaoResponseDTO> buscarPorNome(@RequestParam Integer nota) {
+        return avaliacaoService.listarAvaliacaoDecrecente(nota);
     }
 }

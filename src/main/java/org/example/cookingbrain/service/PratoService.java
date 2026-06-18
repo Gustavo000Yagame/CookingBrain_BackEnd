@@ -3,6 +3,7 @@ package org.example.cookingbrain.service;
 import lombok.AllArgsConstructor;
 import org.example.cookingbrain.dto.PratoRequestDTO;
 import org.example.cookingbrain.dto.PratoResponseDTO;
+import org.example.cookingbrain.dto.RestauranteResponseDTO;
 import org.example.cookingbrain.exception.RecursoNaoEncontradoException;
 import org.example.cookingbrain.model.Prato;
 import org.example.cookingbrain.model.ProdutoEstoque;
@@ -77,6 +78,14 @@ public class PratoService {
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Prato não encontrado"));
         pratoRepository.deleteById(idPrato);
     }
+    public List<PratoResponseDTO> listarPratoNome(String nome){
+        return pratoRepository.findByNomeContainingIgnoreCase(nome)
+                .stream()
+                .map(this::toResponseDTO)
+                .toList();
+    }
+
+
 
     private Prato toEntity(PratoRequestDTO dto) {
         Restaurante restaurante = restauranteRepository.findById(dto.restauranteId())

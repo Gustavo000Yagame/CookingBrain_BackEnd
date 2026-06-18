@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.example.cookingbrain.dto.PratoRequestDTO;
 import org.example.cookingbrain.dto.PratoResponseDTO;
+import org.example.cookingbrain.dto.RestauranteResponseDTO;
 import org.example.cookingbrain.service.PratoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,5 +59,10 @@ public class PratoController {
     public ResponseEntity<Void> deletar(@PathVariable Integer id) {
         pratoService.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+    @Operation(summary = "Busca  Prato por nome")
+    @GetMapping("/buscarPrato/nome")
+    public List<PratoResponseDTO> buscarPorNome(@RequestParam String nome) {
+        return pratoService.listarPratoNome(nome);
     }
 }

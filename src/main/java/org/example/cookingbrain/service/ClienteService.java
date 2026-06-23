@@ -97,16 +97,24 @@ public class ClienteService {
         );
     }
 
-    public Cliente obterOuCriarCliente(String email, String nomeGoogle){
+    public Cliente obterOuCriarCliente(String email, String nomeGoogle) {
+
         return repository
                 .findByEmail(email)
-                .orElseGet(() ->{
+                .orElseGet(() -> {
 
                     Cliente novo = new Cliente();
                     novo.setEmail(email);
                     novo.setNome(nomeGoogle);
 
                     return repository.save(novo);
-        });
+                });
+    }
+
+    public ClienteResponseDTO buscarMeuPerfil(String email, String nome) {
+
+        Cliente cliente = obterOuCriarCliente(email, nome);
+
+        return toResponseDTO(cliente);
     }
 }

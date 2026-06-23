@@ -96,4 +96,17 @@ public class ClienteService {
                 pedido.getCliente().getNome()
         );
     }
+
+    public Cliente obterOuCriarCliente(String email, String nomeGoogle){
+        return repository
+                .findByEmail(email)
+                .orElseGet(() ->{
+
+                    Cliente novo = new Cliente();
+                    novo.setEmail(email);
+                    novo.setNome(nomeGoogle);
+
+                    return repository.save(novo);
+        });
+    }
 }

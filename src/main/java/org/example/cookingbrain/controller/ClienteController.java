@@ -4,9 +4,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.example.cookingbrain.dto.ClienteRequestDTO;
 import org.example.cookingbrain.dto.ClienteResponseDTO;
+import org.example.cookingbrain.model.Cliente;
 import org.example.cookingbrain.service.ClienteService;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,4 +58,14 @@ public class ClienteController {
         clienteService.deletar(idCliente);
     }
 
+    @GetMapping("/me")
+    public Cliente me(Authentication authentication) {
+
+        Jwt jwt = (Jwt) authentication.getPrincipal();
+
+        String email = jwt.getClaimAsString("email");
+        String nome = jwt.getClaimAsString("name");
+
+        return clienteService.obterOuCriarCliente(email, nome);
+    }
 }

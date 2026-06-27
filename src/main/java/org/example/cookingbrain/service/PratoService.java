@@ -12,6 +12,7 @@ import org.example.cookingbrain.repository.PratoRepository;
 import org.example.cookingbrain.repository.ProdutoEstoqueRepository;
 import org.example.cookingbrain.repository.RestauranteRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class PratoService {
         this.produtoEstoqueRepository = produtoEstoqueRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<PratoResponseDTO> listartodos() {
         return pratoRepository.findAll()
                 .stream()

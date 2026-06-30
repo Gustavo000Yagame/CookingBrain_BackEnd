@@ -10,6 +10,7 @@ import org.example.cookingbrain.service.PedidoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Tag(name = "Pedidos", description = "Rotas para gerenciamento dos pedidos")
 @RestController
@@ -44,9 +45,18 @@ public class PedidoController {
         return service.atualizar(dto, idPedido);
     }
 
+    @Operation(summary = "Altera apenas o status de um pedido")
+    @PatchMapping("/{idPedido}/status")
+    public PedidoResponseDTO alterarStatus(@PathVariable Integer idPedido,
+                                           @RequestBody Map<String, String> body) {
+        String status = body.get("status");
+        return service.alterarStatus(idPedido, status);
+    }
+
     @Operation(summary = "Deleta um pedido")
     @DeleteMapping("/{idPedido}")
     public void deletar(@PathVariable Integer idPedido){
         service.deletar(idPedido);
     }
 }
+

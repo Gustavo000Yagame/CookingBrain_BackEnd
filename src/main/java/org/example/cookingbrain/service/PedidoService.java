@@ -55,6 +55,14 @@ public class PedidoService {
         return toResponse(salvo);
     }
 
+    public PedidoResponseDTO alterarStatus(Integer id, String status) {
+        Pedido pedido = repository.findById(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Pedido não encontrado"));
+        pedido.setStatus(status);
+        Pedido salvo = repository.save(pedido);
+        return toResponse(salvo);
+    }
+
     public void deletar(Integer id){
         repository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Pedido não encontrado"));
